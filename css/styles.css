@@ -1,0 +1,63 @@
+/*****************************************
+ * CUSTOM OhioLINK/OhioNET EZproxy Webinar
+ *****************************************/
+
+.two_column {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-gap: 1px;
+    text-align: left;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.two_column_center {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.diagram-right {
+    float: right;
+}
+
+.diagram-left {
+    float: left;
+}
+
+.justify {
+    text-align: justify;
+    letter-spacing: 2px;
+}
+
+.browser_logo {
+    background: none !important;
+    border: none !important;
+    width: 12%;
+    height: 12%;
+}
+
+.browser_label {
+    vertical-align: middle;
+}
+
+.fas {
+    color: #eee8d5;
+}
+
+.monofont {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0;
+    width: 100%;
+    resize: none;
+    outline: none;
+    overflow: auto;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 26px;
+    color: #66d9ef;
+}

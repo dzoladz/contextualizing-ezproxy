@@ -1,0 +1,63 @@
+strict digraph OhioLINKEZproxyWebinar
+{
+  rankdir=RL;
+  splines=ortho;
+  compound=true;
+  node  [style="rounded,filled,bold", shape=box, fixedsize=true, width=1.6, fontname="Arial"];
+
+
+  // Node Clusters
+  subgraph clusterUser { label="User Environment"; style="rounded";
+    User -> Browser[label="", style="dotted", arrowhead=none];
+    }
+
+  subgraph clusterSPU { label="Starting URL"; style="rounded";
+    // email
+    "unknown"[shape="parallelogram", style="filled", fillcolor="yellow"];
+    invisible1[style="invis"];
+    invisible2[style="invis"]
+      subgraph clusterSPUsub { label="Library Properties"; bgcolor="white";
+        "A-Z List"[shape="rounded"];
+        "LibGuides"[shape="rounded"];
+        "LMS"[shape="rounded"];
+        }
+    { rank=same; "unknown"; invisible1; invisible2;
+      }
+    }
+
+  subgraph clusterAuthentication { label="Authentication"; style="rounded";
+    userdatabase1 [shape=cylinder];
+    userdatabase2 [shape=cylinder];
+    userdatabase3 [shape=cylinder];
+    userdatabase4 [shape=cylinder];
+      { rank=same;LDAP;SAML;"Sierra Patron API";
+        }
+    }
+
+  subgraph clusterVendor { label="Vendor platform"; style="rounded";
+    // IP recognition
+    // accounts
+    "Account(s)" -> "Entitlement Pool";
+    }
+
+  subgraph clusterEZproxy { label="EZproxy"; style="filled,bold";
+    "Stanzas"[shape=note, fillcolor="white"];
+    }
+
+  // Bold Edges
+  edge  [style=bold, fontname="Arial", weight=100]
+    Browser -> "A-Z List" [lhead=clusterSPUsub];
+    "A-Z List" -> Stanzas [lhead=clusterEZproxy];
+    Stanzas -> "Account(s)" [lhead=clusterVendor, ltail=clusterEZproxy];
+
+  // Thin Edges
+  edge  [color="#aaaaaa", weight=1]
+    Stanzas -> "Sierra Patron API" [lhead=clusterAuthentication, ltail=clusterEZproxy, style="dashed", arrowhead=none];
+    LMS -> "unknown" [ltail=clusterSPUsub, style="dashed", arrowhead=none];
+    SAML -> LDAP [arrowhead=none];
+    LDAP -> "Sierra Patron API" [arrowhead=none];
+    SAML -> userdatabase1;
+    SAML -> userdatabase2;
+    LDAP -> userdatabase3;
+    "Sierra Patron API" -> userdatabase4;
+}

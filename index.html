@@ -1,0 +1,532 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>OhioLINK EZproxy Webinar</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+
+		<!-- Theme used for slides -->
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Custom CSS for OhioLINK/OhioNET Webinar -->
+		<link rel="stylesheet" href="css/styles.css">
+
+		<!-- Font Awesome Icons 5.3 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- ----------------------------------------------------
+				SECTION - INTRODUCTION
+				---------------------------------------------------- -->
+
+				<section data-transition="slide">
+					<h2>Contextualizing EZPROXY
+						<small>for improved troubleshooting and problem reports</small>
+					</h2>
+					<br/>
+					<div style="display: block">
+						<small>
+							Derek Zoladz, MLIS<br/>
+							Library Systems Analyst @ OhioNET<br/>
+							derekz@ohionet.org<br/><br/>
+						</small>
+					</div>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Background</h2>
+					<p class="fragment fade-up">Manage 60+ Instances</p>
+					<p class="fragment fade-up">Private & Public Academics, Medical & Law Libraries</p>
+					<p class="fragment fade-up">... <i>significant</i> troubleshooting experience 😍</p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<!-- ----------------------------------------------------
+				SECTION - OVERVIEW
+				---------------------------------------------------- -->
+
+				<section data-transition="slide">
+					<h2>Schematic Aerial</h2>
+					<img data-src="img/contextualizing-ezproxy.png">
+				</section>
+
+				<!-- ----------------------------------------------------
+				SECTION - User Environment
+				---------------------------------------------------- -->
+
+				<section data-transition="slide">
+					<h2>User Environment</h2>
+					<div class="two_column">
+						<div>
+							<p class="fragment fade-up">Network Context</p>
+							<p class="fragment fade-up">Browser in Use</p>
+						</div>
+						<div>
+							<img data-src="img/user_environment_focused.png" class="diagram-right">
+						</div>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Network Segment</h2>
+					<div>
+						<table>
+							<tbody>
+							<tr>
+								<td>
+									<span class="fas fa-book-reader"></span>
+								</td>
+								<td>
+									<p class="fragment fade-right">On-Campus</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="fas fa-wifi"></span>
+								</td>
+								<td>
+									<p class="fragment fade-right">Wifi</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="fas fa-mobile"></span>
+								</td>
+								<td>
+									<p class="fragment fade-right">4G/LTE</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="fas fa-bus"></span>
+								</td>
+								<td>
+									<p class="fragment fade-right">Off-campus</p>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+						<p class="fragment fade-right">http://proxy.ohiolink.edu:9099/ip</p>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Browser: Rendering Engines</h2>
+					<div>
+						<table>
+							<tbody>
+							<tr>
+								<td class="browser_label">Blink</td>
+								<td>
+									<p class="fragment fade-up">
+										<img class="browser_logo" src="browser-logos/chrome/chrome.svg">
+										<img class="browser_logo" src="browser-logos/opera/opera.svg">
+										<img class="browser_logo" src="browser-logos/vivaldi/vivaldi.svg">
+										<img class="browser_logo" src="browser-logos/edge/edge.svg">
+										<img class="browser_logo" src="browser-logos/brave/brave.svg">
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="browser_label">Gecko</td>
+								<td>
+									<p class="fragment fade-up">
+										<img class="browser_logo" src="browser-logos/firefox/firefox.svg">
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="browser_label">Webkit</td>
+								<td>
+									<p class="fragment fade-up">
+										<img class="browser_logo" src="browser-logos/safari/safari.png">
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Browser: Version & Plugins</h2>
+					<div data-markdown>
+						<script type="text/template">
+						- Version Information <!-- .element: class="fragment fade-up" -->
+						>  Bug #971641: Chrome 75 does not render IFRAME content if the content was specified using "src" attribute with some delay <!-- .element: class="fragment fade-left" -->
+						- Installed Plugins <!-- .element: class="fragment fade-down" -->
+						  - Privacy Badger <!-- .element: class="fragment fade-left" -->
+  						</script>
+					<div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+
+				<!-- ----------------------------------------------------
+				SECTION - STARTING URLs
+				---------------------------------------------------- -->
+
+				<section data-transition="slide">
+					<h2>Starting Point URLs</h2>
+					<div class="two_column">
+						<div>
+							<p class="fragment fade-up">Library Controlled</p>
+							<p class="fragment fade-down">Unknown</p>
+						</div>
+						<div>
+							<img data-src="img/starting_point_urls_focused.png" class="diagram-right">
+						</div>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Library Properties</h2>
+					<div>
+						<div>
+							<p class="fragment fade-right">A-Z Database List</p>
+							<p class="fragment fade-left">LibGuides</p>
+							<p class="fragment fade-right">Platform Dashboards</p>
+							<p class="fragment fade-left">MARC Records</p>
+						</div>
+					</div>
+					<div>
+						<p class="fragment fade-left">https://login.{ezproxy_hostname}/login?url={target}</p>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-background-opacity="1" data-background-video-loop="true" data-background-video="https://media.giphy.com/media/vxAepoV0RqFaXvBYRF/giphy.mp4">
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<!-- ----------------------------------------------------
+				SECTION - CONFIGURATION OF EZPROXY
+				---------------------------------------------------- -->
+
+				<section data-transition="slide">
+					<h2>Configuration of EZproxy Application</h2>
+					<div class="two_column">
+						<div>
+							<p class="fragment fade-up">EZproxy's Role</p>
+							<p class="fragment fade-up">Database Stanzas, i.e. config.txt</p>
+							<p class="fragment fade-up">Common Issues</p>
+						</div>
+						<div>
+							<img data-src="img/ezproxy_application_focused.png" class="diagram-right">
+						</div>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>What does EZproxy do?</h2>
+					<img data-src="img/contextualizing-ezproxy.png">
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>EZproxy does a few things</h2>
+					<div data-markdown>
+						<script type="text/template">
+							- Confirms users are authorized to access library subscriptions <!-- .element: class="fragment fade-up" -->
+							- Makes the request for content on behalf of the user  <!-- .element: class="fragment fade-down" -->
+							- Returns the content to the user's browser <!-- .element: class="fragment fade-left" -->
+							- Logs activity <!-- .element: class="fragment fade-left" -->
+						</script>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>OCLC's Stanza OSO</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="0">Title Oxford Scholarship Online - OSO
+URL https://www.oxfordscholarship.com
+HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+HJ www.oxfordscholarship.com
+DJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p>Database Stanza</p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Directive => Title</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="1">Title Oxford Scholarship Online - OSO
+URL https://www.oxfordscholarship.com
+HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+HJ www.oxfordscholarship.com
+DJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">starts a new database stanza</p>
+					<p class="fragment fade-up"><textarea readonly class="monofont"><a href="url">link text</a></textarea></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Directive => URL</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="2">Title Oxford Scholarship Online - OSO
+URL https://www.oxfordscholarship.com
+HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+HJ www.oxfordscholarship.com
+DJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">Essentially, a glorified HJ directive</p>
+					<p class="fragment fade-up"><textarea readonly class="monofont"><a href="url">link text</a></textarea></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Directive => HJ</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="3,4,5">Title Oxford Scholarship Online - OSO
+URL https://www.oxfordscholarship.com
+HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+HJ www.oxfordscholarship.com
+DJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">Authorizes an EZproxy starting point</p>
+					<p class="fragment fade-up"><textarea readonly class="monofont">https://www.example.com</textarea></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Directive => DJ</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="6">Title Oxford Scholarship Online - OSO
+URL https://www.oxfordscholarship.com
+HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+HJ www.oxfordscholarship.com
+DJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">Tells EZproxy to rewrite (or proxy) a domain</p>
+					<p class="fragment fade-up"><textarea readonly class="monofont">https://www.example.com</textarea></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<!-- ----------------------------------------------------
+				SECTION - COMMON Errors & Issues
+				---------------------------------------------------- -->
+
+				<section data-transition="concave-in fade-out">
+					<h2>Common Errors & Issues</h2>
+				</section>
+
+
+				<section data-background-image="img/needhost.png">
+				</section>
+
+
+				<section data-transition="slide">
+					<h2>Enabling HTTP and HTTPS</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="1,2">HJ https://oxfordscholarship.com
+HJ oxfordscholarship.com
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">If no protocol is defined, HTTP assumed</p>
+					<p></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+
+				<section data-transition="slide">
+					<h2>Passing Wrong Parameters</h2>
+					<div>
+						<pre class="hljs">
+							<code data-line-numbers="2,4">
+https://{hostname}/login?url=http://infotrac.galegroup.com/itweb/uni-account?db=NRC
+
+https://{hostname}/login?url=http://infotrac.galegroup.com/itweb/old-uni-account?db=PPRC
+							</code>
+						</pre>
+					</div>
+					<p class="fragment fade">Using the wrong account ID in starting point URL</p>
+					<p></p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Authentication & Vendor Platforms</h2>
+					<div class="two_column_center">
+						<div>
+							<img data-src="img/authentication_focused.png">
+						</div>
+						<div>
+							<img data-src="img/vendor_platform_focused.png">
+						</div>
+					</div>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+
+				<!-- ----------------------------------------------------
+				SLIDE STORAGE
+				----------------------------------------------------
+
+				<section data-markdown>
+					| PALNI LIBRARIES |    |
+            		| ------------ | --------------- |
+            		| Marian University | Hanover College |
+            		| St. Meinrad Seminary | Oakland City University |
+					| DePauw University | Wabash College |
+					| Taylor University | Christian Theological |
+					| Trine University | Anabaptist Mennonite |
+					| Concordia Theological | Ancilla College |
+					| Manchester University |  |
+                </section>
+
+                <section>
+					<h1>Overview</h1>
+					<small>Components: Hosted Service, Setup, Reporting</small>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Hosted Service</h2>
+					<p class="fragment fade-up">Server Provisioning</p>
+					<p class="fragment fade-down">IP Allocation</p>
+					<p class="fragment fade-left">Install EZproxy Application</p>
+					<p class="fragment fade-right">Configure Application</p>
+					<p class="fragment fade-left">Configure Authentication</p>
+					<p class="fragment fade-down">Personalization</p>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				<section data-transition="slide">
+					<h2>Groups</h2>
+					<p>Fine-Grained Authentication & Authorization</p>
+
+					<pre>
+						<code class="hljs" data-line-numbers="2,4,6">
+If auth:value eq "Student"; Group Main;
+If auth:value eq "Law Student"; Group Main+Law;
+If auth:value eq "Medical Student"; Group Main+Medical;
+If auth:value eq "Alumni"; Group Alum;
+If auth:value eq "Faculty"; Group Main+Law+Medical+Alum;
+
+						</code>
+					</pre>
+					<aside class="notes">
+						Notes:
+					</aside>
+				</section>
+
+				---------------------------------------------------- -->
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'node_modules/highlight.js/lib/highlight.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/mouse-pointer/mouse-pointer.js', async: true },
+					{ src: 'node_modules/reveal-code-focus/reveal-code-focus.js',
+						async: true,
+						callback: function() {
+							RevealCodeFocus();
+						}
+					}
+				]
+			});
+			Reveal.configure({ pdfSeparateFragments: false });
+		</script>
+	</body>
+</html>
