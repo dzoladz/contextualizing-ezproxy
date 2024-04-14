@@ -1,8 +1,7 @@
-WIP for OhioLINK webinar
+OhioLINK webinar
 =====================
 
-- Project Wiki: https://github.com/OhioNET/ohiolink-webinar/wiki
-- Presentation on GitHub Pages: https://ohionet.github.io/ohiolink-webinar/
+- Presentation on GitHub Pages: https://dzoladz.github.io/contextualizing-ezproxy
 
 ![initial graphviz rendering of EZproxy environment](img/contextualizing-ezproxy.png)
 
